@@ -1,0 +1,92 @@
+body {
+  background:#000;
+}
+
+/* HEADER */
+
+div#hd {
+  background:#007;
+  color:#eee;
+  font-size:150%;
+}
+
+div#ft {
+  background:#007;
+  color:#eee;
+}
+
+div#hd a, div#ft a { color:#bbb; }
+
+div#menu {
+   background:#fff;
+}
+
+div.left {
+  float:left;
+}
+
+div.right {
+  float:right;
+  text-align:right;
+}
+
+/* MENU */
+
+ul.menu
+{
+  clear:both;
+  margin:0;
+  padding:0;
+  font-weight:bold;
+}
+
+ul.menu li
+{
+  display:block;
+  padding:4px 20px 4px 20px;
+  color:#000;
+}
+
+ul.menu li a
+{
+  text-decoration:none;
+  color:#999;
+}
+
+ul.menu li a:hover
+{ 
+  color:#333;
+}
+
+/* MAIN */
+
+#bd {
+  background:#fff;
+}
+
+.content {
+  /* margin: 1em; */
+}
+
+/* MISC */
+
+.center {
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  width: 8em;
+  text-align: right;
+  padding-right: 1em;
+}
+
+div.actions, div.submit_field {
+  margin: 1em 1em 1em 9em;
+}
+
+div.required label {
+  padding-right: 0.5em;
+  margin-right: 0.5em;
+  background: url("/images/red_dot.gif") no-repeat 100% 50%;
+}

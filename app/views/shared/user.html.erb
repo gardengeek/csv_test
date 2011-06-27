@@ -1,0 +1,27 @@
+<h2><%= @user.name %></h2>
+<table>
+  <tr><th>Email</th><td><%= @user.email %></td></tr>
+  <tr><th>Phone number</th><td><%= @user.phone_number %></td></tr>
+  <tr><th>Company name</th><td><%= @user.company_name %></td></tr>
+  <tr><th>Title</th><td><%= @user.title %></td></tr>
+  <tr>
+    <th>Address</th>
+    <td>
+      <%= @user.address_line_1 %><br>
+      <%= @user.address_line_2 %><%= raw "<br>" if !@user.address_line_2.blank? %>
+      <%= @user.city %> <%= @user.state_code %> <%= @user.postal_code %><br>
+      <%= @user.country.try(:name) %>
+    </td>
+  </tr>
+
+  <% if params[:controller] == "users" %>
+    <tr><th>Roles</th><td><%= @user.roles.collect{|r| r.title}.join(",") %></td></tr>
+  <% end %>
+</table>
+
+<%= link_to 'Edit', params[:controller] == "accounts" ? edit_account_path : edit_user_path(@user) %>
+
+<% if params[:controller] == "accounts" %>
+  <hr/>
+  <%= button_to "Cancel My Account", account_path, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>

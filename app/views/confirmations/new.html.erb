@@ -1,0 +1,14 @@
+<h2>Resend confirmation</h2>
+
+Fill out the form below and instructions to confirm your account will be emailed to you:<br />
+<br />
+
+<%= form_tag account_confirmations_path do %>
+  <div>
+    <label>Email:</label>
+    <%= text_field_tag "email" %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Resend confirmation" %>
+  </div>
+<% end %>
