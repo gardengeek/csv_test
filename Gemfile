@@ -5,7 +5,7 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -29,3 +29,30 @@ gem 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+# Currently using plugins for authlogic and cucumber-rails due to migration pain
+#gem "authlogic"
+
+group :development, :test do
+  gem 'sqlite3'
+  gem "rspec-rails"
+  gem "cucumber"
+end
+
+group :test do
+  gem "factory_girl"
+  gem "cucumber-rails"
+  gem "capybara"
+  gem "database_cleaner"
+  gem "launchy"
+  gem "webrat"
+  gem "rcov"
+  gem "ruby-debug"
+  gem "shoulda"
+  gem "autotest-rails"
+  #gem "autotest-fsevent"
+end
+
+gem "clearance"
+gem "cancan"
+gem "bartt-ssl_requirement", :require => "ssl_requirement"
