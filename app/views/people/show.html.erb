@@ -1,0 +1,9 @@
+<table>
+  <tr><th>First name:</th><td><%= @person.first_name %></td></tr>
+  <tr><th>Last name:</th><td><%= @person.last_name %></td></tr>
+  <tr><th>Birth date:</th><td><%= @person.birth_date.try(:to_s) %></td></tr>
+  <tr><th>State:</th><td><%= @person.state.try(:name) %></td></tr>
+</table>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>

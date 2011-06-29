@@ -10,11 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627123446) do
+ActiveRecord::Schema.define(:version => 20110629131344) do
 
   create_table "countries", :force => true do |t|
     t.string   "code",       :limit => 2
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "state_id"
+    t.date     "birth_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
