@@ -39,6 +39,8 @@
             <li><%= link_to_unless_current "My Account", account_path %></li>
             <% if current_user.has_role?(:admin) %>
               <li><%= link_to_unless_current 'Users', users_path %></li>
+              <li><%= link_to_unless_current 'People', people_path %></li>
+              <li><%= link_to_unless_current 'People by State', new_state_search_path %></li>
             <% end %>
           </ul>
         </div>
