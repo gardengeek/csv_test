@@ -1,0 +1,23 @@
+<h1>People Search</h1>
+<div class="state-search">
+  <fieldset>
+    <legend>Please enter search criteria</legend>
+    <%= form_for(@search, :url => state_search_path(:format => :csv), :html => { :method => :post}) do |f| %>
+      <div>
+        <%= f.label :state_id, 'State*' %>
+        <%= f.select :state_id, State.to_options, :include_blank => true %>
+      </div>
+      <div>
+        <%= f.label :start_date_str, 'Created on (beginning date)*' %>
+        <%= f.text_field :start_date_str, :size => 10 %> (mmddyyyy)
+      </div>
+      <div>
+        <%= f.label :end_date_str, 'Created on (ending date)*' %>
+        <%= f.text_field :end_date_str, :size => 10 %> (mmddyyyy)
+      </div>
+      <div class="buttons">
+        <%= submit_tag "Search" %>
+      </div>
+    <% end %>
+  </fieldset>
+</div>

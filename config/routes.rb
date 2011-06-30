@@ -2,6 +2,7 @@ CsvTest::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  resource :state_search, :only => [:create, :new]
 
   resources :people
   resources :roles

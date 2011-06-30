@@ -50,9 +50,9 @@ group :test do
   gem "ruby-debug"
   gem "shoulda"
   gem "autotest-rails"
-  #gem "autotest-fsevent"
 end
 
+gem 'fastercsv'
 gem "clearance"
 gem "cancan"
 gem "bartt-ssl_requirement", :require => "ssl_requirement"
