@@ -6,7 +6,7 @@ CsvTest::Application.routes.draw do
 
   resources :people
   resources :roles
-  resources :users do
+  devise_for :users do
     resource :password, :only => [:create, :edit, :update]
   end
   

@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
   include Clearance::User
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable, :omniauthable, :trackable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :confirmable
+
   has_and_belongs_to_many :roles
   belongs_to :country
   belongs_to :state
@@ -8,6 +14,8 @@ class User < ActiveRecord::Base
     :first_name,
     :last_name,
     :password,
+    :password_confirmation,
+    :remember_me,
     :time_zone,
     :phone_number,
     :company_name,

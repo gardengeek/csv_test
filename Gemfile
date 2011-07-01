@@ -54,5 +54,6 @@ end
 
 gem 'fastercsv'
 gem "clearance"
+gem 'devise', '~> 1.2.1'
 gem "cancan"
 gem "bartt-ssl_requirement", :require => "ssl_requirement"
