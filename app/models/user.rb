@@ -49,12 +49,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def deliver_password_reset_instructions!
-    generate_confirmation_token
-    self.save!
-    Notifier.password_reset_instructions(self).deliver
-  end
-
   def confirmed?
     self.confirmed_at
   end
