@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
-  include Clearance::User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable, :omniauthable, :trackable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable
-
+  
   has_and_belongs_to_many :roles
   belongs_to :country
   belongs_to :state
@@ -48,14 +47,6 @@ class User < ActiveRecord::Base
     else
       errors.add(:state_id, "must be one of #{allowed_values.sort.join(" ")}") if !allowed_values.include?(self.state.try(:code))
     end
-  end
-
-  after_create :deliver_account_confirmation_instructions!
-
-  def deliver_account_confirmation_instructions!
-    generate_confirmation_token
-    self.save!
-    Notifier.account_confirmation_instructions(self).deliver
   end
 
   def deliver_password_reset_instructions!

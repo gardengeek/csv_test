@@ -47,13 +47,13 @@ group :test do
   gem "launchy"
   gem "webrat"
   gem "rcov"
-  gem "ruby-debug"
+  gem 'ruby-debug19', :require => 'ruby-debug', :platforms => :mri_19
+  gem "ruby-debug", :platforms => 'mri_18'
   gem "shoulda"
   gem "autotest-rails"
 end
 
 gem 'fastercsv'
-gem "clearance"
 gem 'devise', '~> 1.2.1'
 gem "cancan"
 gem "bartt-ssl_requirement", :require => "ssl_requirement"
