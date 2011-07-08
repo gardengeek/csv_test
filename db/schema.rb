@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110629131344) do
+ActiveRecord::Schema.define(:version => 20110701143627) do
 
   create_table "countries", :force => true do |t|
     t.string   "code",       :limit => 2
@@ -48,14 +48,14 @@ ActiveRecord::Schema.define(:version => 20110629131344) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                               :null => false
-    t.string   "encrypted_password", :limit => 128
-    t.string   "salt",               :limit => 128
-    t.string   "confirmation_token", :limit => 128
-    t.string   "remember_token",     :limit => 128
+    t.string   "email",                                                 :null => false
+    t.string   "encrypted_password",   :limit => 128
+    t.string   "salt",                 :limit => 128
+    t.string   "confirmation_token",   :limit => 128
+    t.string   "remember_token",       :limit => 128
     t.string   "first_name"
     t.string   "last_name"
-    t.boolean  "active",                            :default => true
+    t.boolean  "active",                              :default => true
     t.datetime "confirmed_at"
     t.string   "time_zone"
     t.string   "phone_number"
@@ -69,9 +69,13 @@ ActiveRecord::Schema.define(:version => 20110629131344) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "reset_password_token"
+    t.datetime "remember_created_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
