@@ -27,13 +27,13 @@ Feature: Visitor signs up for an account.
   Scenario: Visitor can confirm account
     Given the unconfirmed user "alice@example.com/testing"
     When I go to my account confirmation page
-    Then I should be on the account page
+    Then I should be on the user confirmation page
     And I should see "Account Confirmed"
 
   Scenario: Visitor can't see protected pages
-    When I go to the account page
-    Then I should be on the sign in page
-    And I should see "You must be signed in to access this page"
+    When I go to the users page
+    Then I should be on the user sign in page
+    And I should see "You need to sign in or sign up before continuing"
 
   Scenario: Account cannot be confirmed twice
     Given I am signed up as "alice@example.com/testing"
@@ -59,17 +59,17 @@ Feature: Visitor signs up for an account.
 
   Scenario: Visitor receives an appropriate message for invalid email
     Given I am on the new account confirmation page
-    When I fill in "email" with "malory@example.com"
+    When I fill in "Email" with "malory@example.com"
     And I press "Resend confirmation"
     Then I should be on the account confirmations page
-    And I should see "No user was found with that email address"
+    And I should see "Email not found"
 
   Scenario: missing field
     Given I am on the sign in page
     When I follow "Sign up"
     And I fill in "Password" with "humpty dumpty"
     And I press "Sign up"
-    Then I should be on the account page
+    Then I should be on the user registration page
     And I should see error messages
 
   Scenario: signed in user can't use register page
@@ -92,4 +92,4 @@ Feature: Visitor signs up for an account.
     And I fill in "Password" with "bah"
     And I press "Sign in"
     Then I should be on the session page
-    And I should see "Bad email or password"
+    And I should see "Invalid email or password"

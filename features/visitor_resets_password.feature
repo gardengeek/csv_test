@@ -7,20 +7,20 @@ Feature: Password reset
   Scenario: User is not signed up
     Given no user exists with an email of "email@example.com"
     When I request password reset link to be sent to "email@example.com"
-    Then I should see "Unknown email"
+    Then I should see "Email not found"
 
   Scenario: User is signed up and requests password reset
     Given I signed up with "email@example.com/password"
     When I request password reset link to be sent to "email@example.com"
-    Then I should see "instructions for changing your password"
+    Then I should see "instructions about how to reset your password"
     And a password reset message should be sent to "email@example.com"
 
   Scenario: User tries to reset his password with a blank password
     Given I signed up with "email@example.com/password"
     And I go to the new password page
     Then I should see an email field
-    And I fill in "Email address" with "email@example.com"
-    And I press "Reset password"
+    And I fill in "Email" with "email@example.com"
+    And I press "Send me reset password instructions"
     When I follow the password reset link sent to "email@example.com"
     And I update my password with ""
     Then I should see "Password can't be blank."
@@ -29,8 +29,8 @@ Feature: Password reset
   Scenario: User is signed up and updates his password
     Given I signed up with "email@example.com/password"
     And I go to the new password page
-    And I fill in "Email address" with "email@example.com"
-    And I press "Reset password"
+    And I fill in "Email" with "email@example.com"
+    And I press "Send me reset password instructions"
     When I follow the password reset link sent to "email@example.com"
     And I update my password with "newpassword"
     Then I should be signed in
@@ -42,8 +42,8 @@ Feature: Password reset
   Scenario: User who was created before Clearance was installed creates password for first time
     Given a user "email@example.com" exists without a salt, remember token, or password
     When I go to the new password page
-    And I fill in "Email address" with "email@example.com"
-    And I press "Reset password"
+    And I fill in "Email" with "email@example.com"
+    And I press "Send me reset password instructions"
     When I follow the password reset link sent to "email@example.com"
     And I update my password with "newpassword"
     Then I should be signed in
