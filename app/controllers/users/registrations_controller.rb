@@ -28,11 +28,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def update
     @user = current_user
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
     if @user.update_attributes(params[:user])
-      flash[:success] = "Account updated!"
-      redirect_to account_url
+      set_flash_message :notice, :updated
+      sign_in :user, @user, :bypass => true
+      redirect_to(:action => :show)
     else
-      render :action => :edit
+      clean_up_passwords(@user)
+      render_with_scope :edit
     end
   end
 
