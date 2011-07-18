@@ -10,7 +10,7 @@ describe StateSearchesController do
   before(:each) do
     controller.stub!(:current_user).and_return(Factory.build(:admin_user))
     Factory.create(:person, :state => states(:states_58), :first_name => 'Betty', :last_name => 'Boop')
-    Factory.create(:person, :state => states(:states_58), :first_name => 'Jack', :last_name => 'Benny', :birth_date => Date.parse('1950-10-15'))
+    Factory.create(:person, :state => states(:states_58), :first_name => 'Jack', :last_name => 'Benny', :birth_date => Date.parse('1950-10-15'), :created_at => Date.parse('2010-11-24'))
     Factory.create(:person, :state => states(:states_32), :first_name => 'Ginger',:last_name => 'Rogers', :birth_date => Date.parse('1980-09-20'))
   end
 

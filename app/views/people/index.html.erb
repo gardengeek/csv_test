@@ -5,6 +5,8 @@
     <th>First name</th>
     <th>Last name</th>
     <th>State</th>
+    <th>Age when joined</th>
+    <th>Current age</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +16,9 @@
   <tr>
     <td><%= person.first_name %></td>
     <td><%= person.last_name %></td>
-    <td><%= person.state_id %></td>
+    <td><%= person.state.code %></td>
+    <td><%= person.age_at_create %></td>
+    <td><%= person.age %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -10,8 +10,8 @@ class StateSearchesController < ApplicationController
 
   def create
     if params[:state_search][:state_id].blank? ||
-       params[:state_search][:start_date_str].blank? ||
-       params[:state_search][:end_date_str].blank?
+      params[:state_search][:start_date_str].blank? ||
+      params[:state_search][:end_date_str].blank?
 
       flash[:notice] = 'State, starting date and ending date must all have values.'
       redirect_to new_state_search_path
@@ -26,11 +26,12 @@ class StateSearchesController < ApplicationController
 
           format.csv {
             csv_data = FasterCSV.generate do |csv|
-              csv << ['Name', 'DOB']
+              csv << ['Name','DOB','Age when added']
               @results.each do |r|
                 row = Array.new
                 row << "#{r.first_name} #{r.last_name}"
                 row << r.birth_date.try(:to_s)
+                row << r.age_at_create
 
                 csv << row
               end
