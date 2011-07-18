@@ -16,12 +16,20 @@
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
+    <%= f.label :middle_name, 'Middle Name' %>
+    <%= f.text_field :middle_name %>
+  </div>
+  <div class="field">
     <%= f.label :last_name, 'Last Name*' %>
     <%= f.text_field :last_name %>
   </div>
   <div>
     <%= f.label :birth_date_str, 'Birth Date' %>
     <%= f.text_field :birth_date_str, :size => 10 %> (mmddyyyy)
+  </div>
+  <div class="field">
+    <%= f.label :Phone, 'Phone' %>
+    <%= f.text_field :phone %>
   </div>
   <div class="field">
     <%= f.label :state_id, 'State*' %>

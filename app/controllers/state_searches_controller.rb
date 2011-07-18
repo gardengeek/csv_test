@@ -16,7 +16,8 @@ class StateSearchesController < ApplicationController
       flash[:notice] = 'State, starting date and ending date must all have values.'
       redirect_to new_state_search_path
     else
-      @results = Person.find(:all, :conditions => {:state_id => params[:state_search][:state_id]}) #TODO: Replace find with actual search criteria
+      state ||= State.find(params[:state_search][:state_id])
+      @results = Person.find(:all, :conditions => {:state_id => state.id}) #TODO: Replace find with actual search criteria
 
       if @results.empty?
         flash[:notice] = 'No people were found.'
@@ -26,6 +27,7 @@ class StateSearchesController < ApplicationController
 
           format.csv {
             csv_data = FasterCSV.generate do |csv|
+            if state.code == 'OH' 
               csv << ['Name','DOB','Age when added']
               @results.each do |r|
                 row = Array.new
@@ -35,13 +37,30 @@ class StateSearchesController < ApplicationController
 
                 csv << row
               end
+            else
+              @results.each do |r|
+                person = r.first_name.nil? ? ''.ljust(10) : r.first_name[0..9].ljust(10)
+                person += r.middle_name.nil? ? ''.ljust(5) : r.middle_name[0..4].ljust(5)
+                person += r.last_name.nil? ? ''.ljust(9) : r.last_name[0..8].ljust(9)
+                person += r.phone.nil? ? ''.rjust(10,'0') : r.phone.gsub(/[^0-9]/,'')[0..9].rjust(10,'0')
+                person += format_date_yyyymmdd(r.birth_date)
+
+                csv << ["#{person}"]
+              end
+            end
             end
 
-            csv = csv_data.to_s
-            render :text => csv
+          csv = csv_data.to_s
+          render :text => csv
           }
         end
       end
     end
+  end
+
+  private
+  def format_date_yyyymmdd(date)
+    return(''.ljust(8)) if date.nil?
+    "#{date.year}#{date.month.to_s.rjust(2,'0')}#{date.day.to_s.rjust(2,'0')}"
   end
 end
