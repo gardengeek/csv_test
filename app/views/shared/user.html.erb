@@ -19,9 +19,12 @@
   <% end %>
 </table>
 
-<%= link_to 'Edit', params[:controller] == "accounts" ? edit_account_path : edit_user_path(@user) %>
+<% if params[:controller] == 'users' %>
+  <%= link_to 'Edit', edit_user_path(@user) %>
 
-<% if params[:controller] == "accounts" %>
+<% else %>
+  <%= link_to 'Edit', :controller => 'users/registrations', :action => :edit %>
+
   <hr/>
-  <%= button_to "Cancel My Account", account_path, :confirm => 'Are you sure?', :method => :delete %>
+  <%= button_to "Cancel My Account", users_path, :confirm => 'Are you sure?', :method => :delete %>
 <% end %>

@@ -57,10 +57,13 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user.role_ids = params[:user][:role_ids]
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:success] = 'User was successfully updated.'
+        sign_in :user, @user, :bypass => true
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else

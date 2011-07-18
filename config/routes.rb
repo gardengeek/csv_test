@@ -9,10 +9,10 @@ CsvTest::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => 'users/registrations'}
   devise_scope :user do
     root :to => "users/registrations#show", :constraints => lambda {|r| r.env["warden"].authenticate?}
-    root :to => "users/registrations#new"
-    get "/" => "users/registrations#new"
-    post '/' => 'registrations#new', :as => :new_user_registration
-    match '/', :to => 'users/registrations#new'
+    root :to => "devise/sessions#new"
+    get "/" => "devise/sessions#new"
+    post '/' => 'sessions#new', :as => :new_user_session
+    match '/', :to => 'devise/sessions#new'
     get '/sign_in' => 'devise/sessions#new'
     match '/sign_in', :to => 'devise/sessions#new'
     get '/sign_out' => 'devise/sessions#destroy'
@@ -22,7 +22,7 @@ CsvTest::Application.routes.draw do
   resources :users
   
   root :to => "users/registrations#show", :constraints => lambda {|r| r.env["warden"].authenticate?}
-  root :to => "users/registrations#new"
+  root :to => "devise/sessions#new"
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

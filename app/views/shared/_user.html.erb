@@ -1,5 +1,18 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(@user, params[:controller] == "devise/registrations" ? {:url => registration_path(:user)} : {}) do |f| %>
+  <% if params[:controller] == "devise/registrations" %>
+    <%= devise_error_messages! %>
+  <% else %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
 
   <div class="required">
     <%= f.label :email %>
@@ -82,10 +95,10 @@
   <% end %>
 
   <div class="actions">
-    <% if params[:controller] == "accounts" %>
+    <% if params[:controller] == "users/registrations" %>
       <%= f.submit @user.new_record? ? "Sign up" : "Update" %>
       <% if !@user.new_record? %>
-        <%= link_to "Cancel", account_path %>
+        <%= link_to "Cancel", root_path %>
       <% end %>
     <% else %>
       <%= f.submit %>
