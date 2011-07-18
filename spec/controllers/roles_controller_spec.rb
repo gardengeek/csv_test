@@ -1,13 +1,18 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe RolesController do
+  include Devise::TestHelpers
 
   def mock_role(stubs={})
     @mock_role ||= mock_model(Role, stubs)
   end
 
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs).as_null_object
+  end
+
   before(:each) do
-    controller.stub!(:current_user).and_return(Factory.build(:admin_user))
+    request.env['warden'] = mock(Warden, :authenticate => mock_user, :authenticate! => mock_user)
   end
 
   describe "GET index" do

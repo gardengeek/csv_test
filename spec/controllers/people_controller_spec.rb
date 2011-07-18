@@ -19,15 +19,16 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe PeopleController do
+  include Devise::TestHelpers
 
-  # This should return the minimal set of attributes required to create a valid
-  # Person. As you add validations to Person, be sure to
-  # update the return value of this method accordingly.
-  #
   fixtures(:states)
 
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs).as_null_object
+  end
+
   before(:each) do
-    controller.stub!(:current_user).and_return(Factory.build(:admin_user))
+    request.env['warden'] = mock(Warden, :authenticate => mock_user, :authenticate! => mock_user)
   end
 
   def valid_attributes
