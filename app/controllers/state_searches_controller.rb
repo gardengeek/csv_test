@@ -39,10 +39,10 @@ class StateSearchesController < ApplicationController
               end
             else
               @results.each do |r|
-                person = r.first_name.nil? ? ''.ljust(10) : r.first_name[0..9].ljust(10)
-                person += r.middle_name.nil? ? ''.ljust(5) : r.middle_name[0..4].ljust(5)
-                person += r.last_name.nil? ? ''.ljust(9) : r.last_name[0..8].ljust(9)
-                person += r.phone.nil? ? ''.rjust(10,'0') : r.phone.gsub(/[^0-9]/,'')[0..9].rjust(10,'0')
+                person = r.first_name.to_s.ljust(10)[0..9]
+                person += r.middle_name.to_s.ljust(5)[0..4]
+                person += r.last_name.to_s.ljust(9)[0..8]
+                person += r.phone.to_s.gsub(/[^0-9]/,'')[0..9].rjust(10,'0')
                 person += format_date_yyyymmdd(r.birth_date)
 
                 csv << ["#{person}"]
