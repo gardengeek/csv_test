@@ -26,4 +26,33 @@ class StateSearch < ActiveRecord::Base
   def end_date_str
     self[:end_date].to_s
   end
+
+  def self.default_row(r)
+    row = format_left_fixed(r.first_name, 10)
+    row += format_left_fixed(r.middle_name,5)
+    row += format_left_fixed(r.last_name, 9)
+    row += number_right_fixed(r.phone, 10, '0')
+    row += format_date_yyyymmdd(r.birth_date)
+  end
+
+  def self.oh_row(r)
+    row = Array.new
+    row << "#{r.first_name} #{r.last_name}"
+    row << r.birth_date.try(:to_s)
+    row << r.age_at_create
+  end
+
+  private
+  def self.format_date_yyyymmdd(date)
+    return(format_left_fixed(nil, 8)) if date.nil?
+    "#{date.year}#{date.month.to_s.rjust(2,'0')}#{date.day.to_s.rjust(2,'0')}"
+  end
+
+  def self.format_left_fixed(data, fixed_length, filler = ' ')
+    data.to_s.ljust(fixed_length, filler)[0..(fixed_length - 1)]
+  end
+
+  def self.number_right_fixed(number, fixed_length, filler = ' ')
+    number.to_s.gsub(/[^0-9]/,'')[0..(fixed_length - 1)].rjust(fixed_length, filler)
+  end
 end

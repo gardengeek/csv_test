@@ -30,22 +30,11 @@ class StateSearchesController < ApplicationController
             if state.code == 'OH' 
               csv << ['Name','DOB','Age when added']
               @results.each do |r|
-                row = Array.new
-                row << "#{r.first_name} #{r.last_name}"
-                row << r.birth_date.try(:to_s)
-                row << r.age_at_create
-
-                csv << row
+                csv << StateSearch::oh_row(r)
               end
             else
               @results.each do |r|
-                person = format_left_fixed(r.first_name, 10)
-                person += format_left_fixed(r.middle_name,5)
-                person += format_left_fixed(r.last_name, 9)
-                person += number_fixed(r.phone, 10, '0')
-                person += format_date_yyyymmdd(r.birth_date)
-
-                csv << ["#{person}"]
+                csv << ["#{StateSearch::default_row(r)}"]
               end
             end
           end
@@ -56,19 +45,5 @@ class StateSearchesController < ApplicationController
         end
       end
     end
-  end
-
-  private
-  def format_date_yyyymmdd(date)
-    return(format_left_fixed(nil, 8)) if date.nil?
-    "#{date.year}#{date.month.to_s.rjust(2,'0')}#{date.day.to_s.rjust(2,'0')}"
-  end
-
-  def format_left_fixed(data, fixed_length, filler = ' ')
-    data.to_s.ljust(fixed_length, filler)[0..(fixed_length - 1)]
-  end
-
-  def number_fixed(number, fixed_length, filler = ' ')
-    number.to_s.gsub(/[^0-9]/,'')[0..(fixed_length - 1)].rjust(fixed_length, filler)
   end
 end
