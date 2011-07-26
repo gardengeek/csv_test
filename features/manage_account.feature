@@ -9,6 +9,7 @@ Feature: User edits their account.
     When I follow "Edit"
     And I fill in "Email" with "alicia@example.com"
     And I fill in "Password" with "soooper"
+    And I fill in "Confirm new password" with "soooper"
     And I press "Update"
     Then I should be on my account page
     And I should see "User was successfully updated."
