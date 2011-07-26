@@ -40,7 +40,9 @@ describe StateSearchesController do
     it 'creates a CSV file for Iowa (states_32)' do
       post :create, :state_search => { :state_id => states(:states_32), :start_date_str => '10312009', :end_date_str => Date.today}, :format => :csv
       response.headers['Content-Type'].should == 'text/csv; charset=utf-8'
-      response.body.should == File.read("spec/files/state_search_result2.csv")
+      csv_result = File.read("spec/files/state_search_result2.csv")
+      csv_result[5..12] = StateSearch.format_date_yyyymmdd(Date.today)
+      response.body.should == csv_result
     end  
 
   end
