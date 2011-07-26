@@ -2,7 +2,7 @@ class Person < ActiveRecord::Base
 
   belongs_to :state
   validates_presence_of :first_name, :last_name, :state_id
-  attr_accessible :first_name, :last_name, :middle_name, :state, :phone, :birth_date_str
+  attr_accessible :first_name, :last_name, :middle_name, :state_id, :state, :phone, :birth_date_str
 
 
   def birth_date_str=(date_str)
