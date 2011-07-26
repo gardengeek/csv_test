@@ -39,12 +39,12 @@ Feature: User edits their account.
     Given I am signed in as "alice@example.com/testing"
     And I am on the account page
     When I follow "Sign out"
-    Then I should be on the sign in page
-    And I should see "Signed out."
+    Then I should be on the home page
+    And I should see "Signed out successfully"
 
   Scenario: user deactivates account
     Given I sign in
     And I am on the account page
     When I press "Cancel My Account"
-    Then I should be on the sign up page
+    Then I should be on the home page
     And I should see "Account canceled. We're sorry to see you go."

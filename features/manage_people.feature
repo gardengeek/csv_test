@@ -33,6 +33,6 @@ Feature: Manage people
     When I delete the 3rd person
     Then I should see the following people:
       |First name|Last name|State|
-      |Mike|last_name 1|1|
-      |Jack|last_name 2|2|
-      |Mitch|last_name 4|4|
+      |Mike|last_name 1|AB|
+      |Jack|last_name 2|BC|
+      |Mitch|last_name 4|NB|

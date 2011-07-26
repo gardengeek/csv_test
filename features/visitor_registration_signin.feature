@@ -32,7 +32,7 @@ Feature: Visitor signs up for an account.
 
   Scenario: Visitor can't see protected pages
     When I go to the users page
-    Then I should be on the user sign in page
+    Then I should be on the home page
     And I should see "You need to sign in or sign up before continuing"
 
   Scenario: Account cannot be confirmed twice
@@ -91,5 +91,5 @@ Feature: Visitor signs up for an account.
     And I fill in "Email" with "alice@example.com"
     And I fill in "Password" with "bah"
     And I press "Sign in"
-    Then I should be on the session page
+    Then I should be on the user sign in page
     And I should see "Invalid email or password"

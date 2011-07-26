@@ -10,7 +10,7 @@ Feature: User forgot their password.
     And I fill in "Email" with "alice@example.com"
     And I press "Send me reset password instructions"
     Then alice@example.com should receive an email
-    And I should be on the user sign in page
+    And I should be on the home page
     And I should see "You will receive an email with instructions about how to reset your password in a few minutes."
 
   Scenario: email does not exist

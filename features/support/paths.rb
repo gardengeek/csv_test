@@ -23,13 +23,11 @@ module NavigationHelpers
     when /the sign in page/i
       sign_in_path
     when /the user sign in page/i
-      new_user_session_path
+      user_session_path
     when /the passwords page/i
       user_password_path
     when /the sign up page/i
       new_user_registration_path
-    when /the root sign up page/i
-      '/'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

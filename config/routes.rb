@@ -11,7 +11,7 @@ CsvTest::Application.routes.draw do
     root :to => "users/registrations#show", :constraints => lambda {|r| r.env["warden"].authenticate?}
     root :to => "devise/sessions#new"
     get "/" => "devise/sessions#new"
-    post '/' => 'sessions#new', :as => :new_user_session
+    post '/' => 'devise/sessions#new', :as => :new_user_session
     match '/', :to => 'devise/sessions#new'
     get '/sign_in' => 'devise/sessions#new'
     match '/sign_in', :to => 'devise/sessions#new'
