@@ -19,7 +19,7 @@ CsvTest::Application.routes.draw do
     match '/sign_out', :to => 'devise/sessions#destroy'
   end
 
-  resources :users
+  resources :users, :except => [:new, :create]
   
   root :to => "users/registrations#show", :constraints => lambda {|r| r.env["warden"].authenticate?}
   root :to => "devise/sessions#new"

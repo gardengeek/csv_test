@@ -3,14 +3,15 @@ Feature: Manage users
   An admin
   wants a maintenance screen
 
-  Scenario: Register new user
+  Scenario: Edit existing user
     Given I am signed in as an admin
     And the following users:
       |first_name|
       |Manny|
       |Moe|
       |Jack|
-    And I am on the new user page
+    And I am on the users page
+    And I follow "Edit"
     When I fill in "Email" with "new_user@example.com"
     And I fill in "First name" with "Joe"
     And I fill in "Last name" with "Blow"
@@ -25,7 +26,7 @@ Feature: Manage users
     And I fill in "Postal code" with "01923"
     And I select "UNITED STATES" from "Country"
     And I check "Admin"
-    And I press "Create"
+    And I press "Update"
     Then I should see "new_user@example.com"
     And I should see "Joe Blow"
     And I should see "BR549"
