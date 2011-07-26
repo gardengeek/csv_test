@@ -33,6 +33,7 @@ class StateSearchesController < ApplicationController
                 csv << StateSearch::oh_row(r)
               end
             else
+              csv << ["#{StateSearch::default_summary_row(@results)}"]
               @results.each do |r|
                 csv << ["#{StateSearch::default_row(r)}"]
               end
