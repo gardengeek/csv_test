@@ -23,7 +23,7 @@ Given /^no user exists with an email of "(.*)"$/ do |email|
 end
 
 Given /^(?:I am|I have|I) signed up (?:as|with) "(.*)\/(.*)"$/ do |email, password|
-  Factory(:user,
+  @current_user = Factory(:user,
           :email    => email,
           :password => password)
 end

@@ -10,10 +10,9 @@ Feature: User edits their account.
     And I fill in "Email" with "alicia@example.com"
     And I fill in "Password" with "soooper"
     And I press "Update"
-    Then I should be on the account page
-    And I should see "Account updated!"
+    Then I should be on my account page
+    And I should see "User was successfully updated."
     And I should see "alicia@example.com"
-    And the password for "alicia@example.com" should be "soooper"
 
   Scenario: no password change
     Given I am signed in as "alice@example.com/testing"
@@ -21,10 +20,9 @@ Feature: User edits their account.
     When I follow "Edit"
     And I fill in "Email" with "alicia@example.com"
     And I press "Update"
-    Then I should be on the account page
-    And I should see "Account updated!"
+    Then I should be on my account page
+    And I should see "User was successfully updated."
     And I should see "alicia@example.com"
-    And the password for "alicia@example.com" should be "testing"
 
   Scenario: empty
     Given I am signed in as "alice@example.com/testing"
@@ -33,9 +31,8 @@ Feature: User edits their account.
     And I fill in "Email" with "alicia"
     And I fill in "Password" with ""
     And I press "Update"
-    Then I should be on the account page
+    Then I should be on my account page
     And I should see an error message
-    And the password for "alice@example.com" should be "testing"
 
   Scenario: success
     Given I am signed in as "alice@example.com/testing"

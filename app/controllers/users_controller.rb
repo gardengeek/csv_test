@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:success] = 'User was successfully updated.'
-        sign_in :user, @user, :bypass => true
+        sign_in :user, (current_user == @user) ? @user : current_user, :bypass => true
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else

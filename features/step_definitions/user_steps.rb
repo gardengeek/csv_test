@@ -15,10 +15,6 @@ Given /^the unconfirmed user "(.*)"$/ do |userspec|
   User.last.update_attribute(:confirmed_at,nil)
 end
 
-Then /^the password for "(.*)" should be "(.*)"$/ do |email,pass|
-  User.authenticate(email, pass).class.should be(User)
-end
-
 When /^I delete the (\d+)(?:st|nd|rd|th) user$/ do |pos|
   visit users_path
   within("table > tr:nth-child(#{pos.to_i+1})") do

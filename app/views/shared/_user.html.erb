@@ -1,4 +1,4 @@
-<%= form_for(@user, params[:controller] == "devise/registrations" ? {:url => registration_path(:user)} : {}) do |f| %>
+<%= form_for(@user, params[:controller] == "devise/registrations" ? {:url => registration_path(:user)} : params[:controller] == "users" ? { :controller => :users, :action => (params[:action] == "new" ? :create : :update) } : {}) do |f| %>
   <% if params[:controller] == "devise/registrations" %>
     <%= devise_error_messages! %>
   <% else %>
