@@ -1,5 +1,7 @@
 class Person < ActiveRecord::Base
 
+  require "date_conv"
+
   belongs_to :state
   validates_presence_of :first_name, :last_name, :state_id
   attr_accessible :first_name, :last_name, :middle_name, :state_id, :state, :phone, :birth_date_str
