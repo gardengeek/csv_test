@@ -9,12 +9,13 @@ module DateConv
 
   def self.string_to_date(date_str)
     date_str = DateConv::convert_keypad(date_str.to_s)
-    
     if date_str.blank? || date_str.nil?
       return_date = nil
     else
       return_date = Date.parse(date_str)
     end
     return_date
+  rescue ArgumentError
+    false
   end
 end

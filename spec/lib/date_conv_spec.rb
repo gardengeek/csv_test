@@ -29,7 +29,8 @@ describe DateConv do
       "07/01/2008" => Date.parse("07/01/2008"),
       "11152009" => Date.parse("2009-11-15"),
       "11/23/2009" => Date.parse("11/23/2009"),
-      "111209" => Date.parse("111209")
+      "111209" => Date.parse("111209"),
+      "04312007" => false  #invalid date
     }.each do | str_date, result |
       context "with #{str_date} date entered" do
 

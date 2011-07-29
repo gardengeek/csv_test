@@ -5,10 +5,20 @@ class Person < ActiveRecord::Base
   belongs_to :state
   validates_presence_of :first_name, :last_name, :state_id
   attr_accessible :first_name, :last_name, :middle_name, :state_id, :state, :phone, :birth_date_str
+  attr_accessor :birth_date_valid
+
+
+  validate :validate_date
 
 
   def birth_date_str=(date_str)
-    self[:birth_date] = DateConv::string_to_date(date_str)
+    dob = DateConv::string_to_date(date_str)
+    if dob == false 
+      self.birth_date_valid = "Invalid date"
+    else
+      self[:birth_date] = dob
+      self.birth_date_valid = ""
+    end
   end
 
   def birth_date_str
@@ -27,5 +37,9 @@ class Person < ActiveRecord::Base
     age = self.created_at.year - self.birth_date.year
     age -= 1 if self.created_at < (self.birth_date + age.years)
     age
+  end
+
+  def validate_date
+    errors.add(:birth_date_str, "is invalid") unless self.birth_date_valid.blank? 
   end
 end
